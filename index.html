@@ -655,19 +655,19 @@ function processAPIsJSONTagCloud($apisjsonURL)
             				$slug = val['slug'];
             				$tagcount = val['count'];
                     $tagpercentage = val['percentage'];
-                    console.log($name + ": " + $tagpercentage);
+                    //console.log($name + ": " + $tagpercentage);
             				//html = '<span style="padding: 5px; text-align: center;"><a href="#" title="used ' + $tagcount + ' times">' + $name + '</a> (' + $tagcount + ' times)</span>';
             				//$('#stack-toc').append(html);
                     html = '<span data-weight="' + $tagpercentage + '"><a href="#" name="' + $name + '">' + $name + '</a></span>';
-                    console.log("html:" + html);
+                    //console.log("html:" + html);
                     $('#stack-cloud').append(html);
 
             			});
 
             			$("#stack-cloud").awesomeCloud({
             				"size" : {
-            					"grid" : 10,
-            					"factor" : 2
+            					"grid" : 8,
+            					"factor" : 1
             				},
             				"options" : {
             					"color" : "random-dark",
