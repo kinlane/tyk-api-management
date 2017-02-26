@@ -7,12 +7,12 @@ title: 'Tyk API Management'
 
 <p><a href="https://tyk.io"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/tyk_io_logo.png" align="right" width="250" style="padding: 15px;" /></a></p>
 <p>This is an APIs.json index for the APIs I'm tracking over at Tyk. It is meant to provide a single collection of their API management APIs, while also providing individual APIs.json files defining each API's operations, and surface area.</p>
-<p>The entire API index is available under <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/tree/gh-pages/_data">the _data folder for the project's Github repository</a>, providing a machine-readable index of the GSA APIs for use across my systems. It provides a single forkable repository that acts as a machine-readable discovery index of APIs operated across the GSA, that anyone else can also put to use.</p>
+<p>The entire API index is available under <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/tree/master/_data">the _data folder for the project's Github repository</a>, providing a machine-readable index of the GSA APIs for use across my systems. It provides a single forkable repository that acts as a machine-readable discovery index of APIs operated across the GSA, that anyone else can also put to use.</p>
 
 <p>To help me make sense of their APIs, I got to work creating a basic <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid-driven</a> listing of all the APIs I have indexed in the _data/api-commons/ folder of this API index. Each API has it's own folder, APIs.json index, and OpenAPI Spec--this is the result of those machine readable index, with a little HTML polish to make it easier on the eyes, and for human consumption.</p>
 
 <!--Beginning Liquid Listing of _data/api-commons/ folder-->
-{% assign raw_url = 'https://raw.githubusercontent.com/' | append: site.github_org  | append: '/' | append: site.github_repo | append: '/gh-pages/_data/api-commons/' %}
+{% assign raw_url = 'https://raw.githubusercontent.com/' | append: site.github_org  | append: '/' | append: site.github_repo | append: '/master/_data/api-commons/' %}
 {% assign index = site.data.apis %}
 {% assign apijson = index[0] %}
 {% assign contents = site.data.api-commons %}
@@ -340,19 +340,19 @@ title: 'Tyk API Management'
 
     var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
       console.log(apisJSON);
-      $gh-pagesName = apisJSON['name'];
+      $masterName = apisJSON['name'];
 
-      $gh-pagesDesc = apisJSON['description'];
-      $gh-pagesLogo = apisJSON['image'];
-      $gh-pagesURL = apisJSON['url'];
+      $masterDesc = apisJSON['description'];
+      $masterLogo = apisJSON['image'];
+      $masterURL = apisJSON['url'];
 
-      $gh-pagesTags = apisJSON['tags'];
-      $gh-pagesIncludes = apisJSON['include'];
+      $masterTags = apisJSON['tags'];
+      $masterIncludes = apisJSON['include'];
 
-      $.each($gh-pagesIncludes, function(gh-pagesKey, gh-pagesValue) {
+      $.each($masterIncludes, function(masterKey, masterValue) {
 
-        $includeName = gh-pagesValue['name'];
-        $includeRootUrl = gh-pagesValue['url'];
+        $includeName = masterValue['name'];
+        $includeRootUrl = masterValue['url'];
 
         $FullCount = $FullCount + 1;
 
@@ -469,7 +469,7 @@ title: 'Tyk API Management'
     });
 
   }
-$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/gh-pages/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 processAPIsJSONAutocomplete($apisjsonURL);
 
 </script>
@@ -504,19 +504,19 @@ function processAPIsJSONTagCloud($apisjsonURL)
 
   var loadItTagCloud = $.getJSON($apisjsonURL, function(apisJSON) {
     console.log(apisJSON);
-    $gh-pagesName = apisJSON['name'];
+    $masterName = apisJSON['name'];
 
-    $gh-pagesDesc = apisJSON['description'];
-    $gh-pagesLogo = apisJSON['image'];
-    $gh-pagesURL = apisJSON['url'];
+    $masterDesc = apisJSON['description'];
+    $masterLogo = apisJSON['image'];
+    $masterURL = apisJSON['url'];
 
-    $gh-pagesTags = apisJSON['tags'];
-    $gh-pagesIncludes = apisJSON['include'];
+    $masterTags = apisJSON['tags'];
+    $masterIncludes = apisJSON['include'];
 
-    $.each($gh-pagesIncludes, function(gh-pagesKey, gh-pagesValue) {
+    $.each($masterIncludes, function(masterKey, masterValue) {
 
-      $includeName = gh-pagesValue['name'];
-      $includeRootUrl = gh-pagesValue['url'];
+      $includeName = masterValue['name'];
+      $includeRootUrl = masterValue['url'];
 
       $FullCountTagCloud = $FullCountTagCloud + 1;
 
@@ -706,7 +706,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
 
 }
 
-$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/gh-pages/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 //console.log("loading..." + $apisjsonURL);
 processAPIsJSONTagCloud($apisjsonURL);
 
@@ -737,19 +737,19 @@ function processAPIsJSONListByTag($apisjsonURL)
 
   var loadItListByTag = $.getJSON($apisjsonURL, function(apisJSON) {
 
-    $gh-pagesName = apisJSON['name'];
+    $masterName = apisJSON['name'];
 
-    $gh-pagesDesc = apisJSON['description'];
-    $gh-pagesLogo = apisJSON['image'];
-    $gh-pagesURL = apisJSON['url'];
+    $masterDesc = apisJSON['description'];
+    $masterLogo = apisJSON['image'];
+    $masterURL = apisJSON['url'];
 
-    $gh-pagesTags = apisJSON['tags'];
-    $gh-pagesIncludes = apisJSON['include'];
+    $masterTags = apisJSON['tags'];
+    $masterIncludes = apisJSON['include'];
 
-    $.each($gh-pagesIncludes, function(gh-pagesKey, gh-pagesValue) {
+    $.each($masterIncludes, function(masterKey, masterValue) {
 
-       $includeName = gh-pagesValue['name'];
-       $includeRootUrl = gh-pagesValue['url'];
+       $includeName = masterValue['name'];
+       $includeRootUrl = masterValue['url'];
 
        $FullCount = $FullCount + 1;
 
@@ -915,7 +915,7 @@ $.each(ordered, function(tagKey, tagValue) {
   });
 }
 
-$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/gh-pages/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 //console.log("loading..." + $apisjsonURL);
 processAPIsJSONListByTag($apisjsonURL);
 
