@@ -1,15 +1,19 @@
 {
-	"name": "Tyk API Management",
-	"image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/tyk_io_logo.png",
-	"created": "2017-02-25",
-	"modified": "2017-02-25",
-	"url": "http://tyk.management.apievangelist.com/apis.json",
-	"specificationVersion": "0.14",
-	"apis": [],
-	"tags": ["Management",
-	"Tyk API Management"],
-	"include": [{
-		"name": "Tyk",
-		"url": "https://raw.githubusercontent.com/kinlane/tyk-api-management/gh-pages/_data/api-commons/tyk/apis.json"
-	}]
+  "name": "Tyk API Management",
+  "image": "http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/tyk_io_logo.png",
+  "created": "2017-02-25",
+  "modified": "2017-02-25",
+  "url": "http://tyk.management.apievangelist.com/apis.json",
+  "specificationVersion": "0.14",
+  "apis": [],
+  "tags": [
+    "API Management",
+    "Tyk API Management"
+  ],
+  "include": [
+    {
+      "name": "Tyk",
+      "url": "https://raw.githubusercontent.com/kinlane/tyk-api-management/gh-pages/_data/api-commons/tyk/apis.json"
+    }
+  ]
 }
