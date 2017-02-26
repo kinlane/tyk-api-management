@@ -469,7 +469,7 @@ title: 'Tyk API Management'
     });
 
   }
-$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 processAPIsJSONAutocomplete($apisjsonURL);
 
 </script>
@@ -706,7 +706,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
 
 }
 
-$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 //console.log("loading..." + $apisjsonURL);
 processAPIsJSONTagCloud($apisjsonURL);
 
@@ -915,7 +915,7 @@ $.each(ordered, function(tagKey, tagValue) {
   });
 }
 
-$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+$apisjsonURL = "https://raw.githubusercontent.com/{{ site.github_org }}/{{ site.github_repo }}/master/_data/apis.json";
 //console.log("loading..." + $apisjsonURL);
 processAPIsJSONListByTag($apisjsonURL);
 
