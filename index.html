@@ -503,7 +503,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
   $FullCountTagCloud = $FullCountTagCloud + 1;
 
   var loadItTagCloud = $.getJSON($apisjsonURL, function(apisJSON) {
-
+    console.log(apisJSON);
     $gh-pagesName = apisJSON['name'];
 
     $gh-pagesDesc = apisJSON['description'];
