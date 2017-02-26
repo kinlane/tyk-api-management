@@ -339,7 +339,7 @@ title: 'Tyk API Management'
     $FullCount = $FullCount + 1;
 
     var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
-
+      console.log(apisJSON);
       $gh-pagesName = apisJSON['name'];
 
       $gh-pagesDesc = apisJSON['description'];
