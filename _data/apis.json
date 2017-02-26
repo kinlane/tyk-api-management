@@ -7,8 +7,7 @@
   "specificationVersion": "0.14",
   "apis": [],
   "tags": [
-    "API Management",
-    "Tyk API Management"
+    "API Management"
   ],
   "include": [
     {
