@@ -333,13 +333,13 @@ title: 'Tyk API Management'
 
   function processAPIsJSONAutocomplete($apisjsonURL)
   {
-    console.log("URL:" + $apisjsonURL);
+
     $apiHumanURL = "";
 
     $FullCount = $FullCount + 1;
 
     var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
-      console.log(apisJSON);
+
       $masterName = apisJSON['name'];
 
       $masterDesc = apisJSON['description'];
@@ -503,7 +503,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
   $FullCountTagCloud = $FullCountTagCloud + 1;
 
   var loadItTagCloud = $.getJSON($apisjsonURL, function(apisJSON) {
-    console.log(apisJSON);
+
     $masterName = apisJSON['name'];
 
     $masterDesc = apisJSON['description'];
@@ -523,8 +523,6 @@ function processAPIsJSONTagCloud($apisjsonURL)
       var loadItTagCloud2 = $.getJSON($includeRootUrl, function(apisJSON) {
 
         $singleName = apisJSON['name'];
-
-        console.log($singleName);
 
         $singleDesc = apisJSON['description'];
         $singleLogo = apisJSON['image'];
@@ -573,7 +571,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
 
                     $method_summary = methodValue['summary'];
                     $tags = methodValue['tags'];
-
+console.log("tags:" + tags);
                     $.each($tags, function($tagKey, $tagValue) {
 
                       $tag = $tagValue;
