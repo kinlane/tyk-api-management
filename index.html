@@ -659,7 +659,7 @@ function processAPIsJSONTagCloud($apisjsonURL)
             				//html = '<span style="padding: 5px; text-align: center;"><a href="#" title="used ' + $tagcount + ' times">' + $name + '</a> (' + $tagcount + ' times)</span>';
             				//$('#stack-toc').append(html);
                     html = '<span data-weight="' + $tagpercentage + '"><a href="#" name="' + $name + '">' + $name + '</a></span>';
-                    console.log(html);
+                    console.log("html:" + html);
                     $('#stack-cloud').append(html);
 
             			});
