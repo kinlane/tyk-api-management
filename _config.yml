@@ -18,13 +18,13 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "
 paginate: 150
 paginate_path: "/blog/page:num"
 
-github_org: gsa-data
-github_repo: index
+github_org: kinlane
+github_repo: tyk-api-management
 
 # Masthead title
 masthead_link: http://tyk.management.apievangelist.com/
 masthead_font_size: 90
-masthead_title: '{"GSA Index"}'
+masthead_title: '{"Tyk API Management"}'
 
 # Feature
 feature_title: API Guide
