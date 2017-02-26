@@ -13,7 +13,7 @@
   "include": [
     {
       "name": "Tyk",
-      "url": "https://raw.githubusercontent.com/kinlane/tyk-api-management/gh-pages/_data/api-commons/tyk/apis.json"
+      "url": "https://raw.githubusercontent.com/kinlane/tyk-api-management/master/_data/api-commons/tyk/apis.json"
     }
   ]
 }
