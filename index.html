@@ -1,17 +1,15 @@
 ---
 layout: page
-title: 'My GSA API Index'
+title: 'Tyk API Management'
 ---
 
-<h2>My GSA API Index</h2>
+<h2>Tyk API Management</h2>
 
 <p><a href="http://open.gsa.gov/developer/"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/gsa-logo.png" align="right" width="250" style="padding: 15px;" /></a></p>
-<p>This is an APIs.json index for the APIs I'm tracking on at the General Services Administration (GSA). It is meant to provide a single collection of disparate GSA APIs, while also providing individual APIs.json files defining each API's operations, and surface area.</p>
+<p>This is an APIs.json index for the APIs I'm tracking over at Tyk. It is meant to provide a single collection of their API management APIs, while also providing individual APIs.json files defining each API's operations, and surface area.</p>
 <p>The entire API index is available under <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/tree/master/_data">the _data folder for the project's Github repository</a>, providing a machine-readable index of the GSA APIs for use across my systems. It provides a single forkable repository that acts as a machine-readable discovery index of APIs operated across the GSA, that anyone else can also put to use.</p>
-<p>Ok, so why do I do this. It helps me keep track of what types of APIs are avaialable across government, providing me with a machine-readable index of each API, and it's supporting operations, gathered into a meaningful collection--in this scenario, grouped by organization (GSA). APIs.json can be used to describe any single API operations, as well as a collection of APIs--each APIs.json has one or many OpenAPI Specs for the APIs, providing further detail about the surface area of each API.</p>
-<p>There are many benefits to publishing my API indexes this way. First, its machine readable, and available on Github--meaning anyone can download, fork, or reference it directly. I get all the benefits of Github when managing it--version control, API, free public hosting. Plus, I get to make all these <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a> and JavaScript goodies that help me make sense of APIs. <a href="https://jekyllrb.com/">If you aren't familiar with Jekyll, and what you can do with it on Github, I recommend you get up to speed as quickly as you can--it is world altering stuff</a>.</p>
 
-<p>To help me make sense of the APIs in this GSA index, I got to work creating a basic <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid-driven</a> listing of all the APIs I have indexed in the _data/api-commons/ folder of this API index. Each API has it's own folder, APIs.json index, and OpenAPI Spec--this is the result of those machine readable index, with a little HTML polish to make it easier on the eyes, and for human consumption.</p>
+<p>To help me make sense of their APIs, I got to work creating a basic <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid-driven</a> listing of all the APIs I have indexed in the _data/api-commons/ folder of this API index. Each API has it's own folder, APIs.json index, and OpenAPI Spec--this is the result of those machine readable index, with a little HTML polish to make it easier on the eyes, and for human consumption.</p>
 
 <!--Beginning Liquid Listing of _data/api-commons/ folder-->
 {% assign raw_url = 'https://raw.githubusercontent.com/' | append: site.github_org  | append: '/' | append: site.github_repo | append: '/master/_data/api-commons/' %}
