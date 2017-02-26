@@ -1,0 +1,936 @@
+---
+layout: page
+title: 'My GSA API Index'
+---
+
+<h2>My GSA API Index</h2>
+
+<p><a href="http://open.gsa.gov/developer/"><img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/company/logos/gsa-logo.png" align="right" width="250" style="padding: 15px;" /></a></p>
+<p>This is an APIs.json index for the APIs I'm tracking on at the General Services Administration (GSA). It is meant to provide a single collection of disparate GSA APIs, while also providing individual APIs.json files defining each API's operations, and surface area.</p>
+<p>The entire API index is available under <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/tree/master/_data">the _data folder for the project's Github repository</a>, providing a machine-readable index of the GSA APIs for use across my systems. It provides a single forkable repository that acts as a machine-readable discovery index of APIs operated across the GSA, that anyone else can also put to use.</p>
+<p>Ok, so why do I do this. It helps me keep track of what types of APIs are avaialable across government, providing me with a machine-readable index of each API, and it's supporting operations, gathered into a meaningful collection--in this scenario, grouped by organization (GSA). APIs.json can be used to describe any single API operations, as well as a collection of APIs--each APIs.json has one or many OpenAPI Specs for the APIs, providing further detail about the surface area of each API.</p>
+<p>There are many benefits to publishing my API indexes this way. First, its machine readable, and available on Github--meaning anyone can download, fork, or reference it directly. I get all the benefits of Github when managing it--version control, API, free public hosting. Plus, I get to make all these <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid</a> and JavaScript goodies that help me make sense of APIs. <a href="https://jekyllrb.com/">If you aren't familiar with Jekyll, and what you can do with it on Github, I recommend you get up to speed as quickly as you can--it is world altering stuff</a>.</p>
+
+<p>To help me make sense of the APIs in this GSA index, I got to work creating a basic <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid-driven</a> listing of all the APIs I have indexed in the _data/api-commons/ folder of this API index. Each API has it's own folder, APIs.json index, and OpenAPI Spec--this is the result of those machine readable index, with a little HTML polish to make it easier on the eyes, and for human consumption.</p>
+
+<!--Beginning Liquid Listing of _data/api-commons/ folder-->
+{% assign raw_url = 'https://raw.githubusercontent.com/' | append: site.github_org  | append: '/' | append: site.github_repo | append: '/master/_data/api-commons/' %}
+{% assign index = site.data.apis %}
+{% assign apijson = index[0] %}
+{% assign contents = site.data.api-commons %}
+
+{% for item in contents %}
+
+  {% assign item_name = item[0] %}
+  {% assign folderitem = item[1] %}
+  {% assign apijson = folderitem.apis %}
+
+  {% assign api_name = apijson.name %}
+  {% assign api_description = apijson.description %}
+  {% assign api_image = apijson.image %}
+  {% assign api_json_url = apijson.url %}
+
+    <!-- APIs.json -->
+    <table cellpadding="3" cellspacing="2" width="100%" border="0" style="margin-top: 0px;">
+
+    {% assign blog_url = '' %}
+    {% assign blogrss_url = '' %}
+    {% assign portal_url = '' %}
+    {% assign gitub_url = '' %}
+    {% assign twitter_url = '' %}
+    {% assign website_url = '' %}
+
+    {% for common in apijson.x-common %}
+
+      {% if common.type == 'x-portal' %}
+        {% assign portal_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-website' %}
+        {% assign website_url = common.url %}
+      {% endif %}
+
+      {% if portal_url == empty %}
+        {% assign portal_url = website_url %}
+      {% endif %}
+
+      {% if common.type == 'x-getting-started' %}
+        {% assign getting_started_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-authentication-overview' %}
+        {% assign authentication_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-faq' %}
+        {% assign faq_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-login' %}
+        {% assign login_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-selfservice-registration' %}
+        {% assign signup_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-documentation' %}
+        {% assign documentation_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-code-page' %}
+        {% assign code_page_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-road-map' %}
+        {% assign road_map_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-issues' %}
+        {% assign issue_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-change-log' %}
+        {% assign change_log_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-status' %}
+        {% assign status_dashboard_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-support' %}
+        {% assign support_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-blog' %}
+        {% assign blog_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-blog-rss' %}
+        {% assign blogrss_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-twitter' %}
+        {% assign twitter_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-github' %}
+        {% assign gitub_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-signup' %}
+        {% assign gitub_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-dedicated-plans--pricing-page' %}
+        {% assign plan_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-rate-limit' %}
+        {% assign rate_limit_url = common.url %}
+      {% endif %}
+
+      {% if common.type == 'x-terms-of-service-page' %}
+        {% assign terms_of_service_url = common.url %}
+      {% endif %}
+      {% if common.type == 'x-privacy-policy-page' %}
+        {% assign privacy_policy_url = common.url %}
+      {% endif %}
+
+    {% endfor %}
+
+    <tr>
+      <td>
+
+        <h3>{{ api_name }} (<a href="{{ api_json_url }}" style="font-size: 12px; padding-left: 3px;">view APIs.json</a>)<h3>
+        <p><img src="{{ api_image }}" width="150" style="padding: 15px;" align="left" /></p>
+        <p style="font-size: 13px;">{{ api_description }}<p>
+
+          <table width="100%" border="0" style="padding-top: 10px;">
+            <tr>
+              <td align="center" colspan="3" style="margin-left: 25px; margin-right: 25px;">
+                <ul style="list-style: none; display: inline;">
+                  {% if portal_url != '' %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ portal_url }}" target="_blank" title="Portal">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-portal-developers.jpg" width="32" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+                  {% if blog_url != '' && blog_url != empty && blog_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ blog_url }}" target="_blank" title="Blog">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-blog-icon.png" width="27" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if blogrss_url != '' && blogrss_url != empty && blogrss_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ blogrss_url }}" target="_blank" title="Blog RSS">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-rss-icon.png" width="27" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if twitter_url != '' && twitter_url != empty && twitter_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ twitter_url }}" target="_blank" title="Twitter">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-twitter-icon.png" width="44" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if gitub_url != '' && gitub_url != empty && gitub_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ gitub_url }}" target="_blank" title="Github">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-icon.png" width="52" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if signup_url != '' && signup_url != empty && signup_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ signup_url }}" target="_blank" title="Signup">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/building-blocks/x-signup.png" width="45" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if issue_url != '' && issue_url != empty && issue_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ issue_url }}" target="_blank" title="Issues">
+                        <img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-bug.png" width="38" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+                  {% if terms_of_service_url != '' && terms_of_service_url != empty && terms_of_service_url != null %}
+                    <li style="display: inline; padding-left: 15px; padding-right: 15px;">
+                      <a href="{{ terms_of_service_url }}" target="_blank" title="Terms of Service">
+                        <img src="http://kinlane-productions.s3.amazonaws.com/api-evangelist-site/building-blocks/bw-terms-conditions.png" width="33" align="center" />
+                      </a>
+                    </li>
+                  {% endif %}
+
+
+                </ul>
+              </td>
+            </tr>
+          </table>
+
+          <table width="100%" border="0" style="padding-top: 10px; border-bottom: 1px solid #000;">
+             <tr>
+             <td align="center" style="margin-left: 90px; margin-right: 90px;">
+
+                 {% assign api_action_url = '' %}
+                 {% assign numberofapis = apijson.apis | size %}
+
+                   {% assign api_action_url = '' %}
+                   {% for api in apijson.apis %}
+
+                   <table cellpadding="3" cellspacing="2" width="100%" border="0">
+
+                       {% assign api_action_spec = '' %}
+                       {% assign api_action_url = '' %}
+                       {% assign openapi_spec_json = '' %}
+
+                       {% for property in api.properties %}
+
+                         {% assign thisname = apijson.name | downcase %}
+                         {% assign thisname = thisname | append:'/' %}
+                         {% assign thisname = thisname | replace: ' ','-' %}
+
+                         {% if property.type == 'x-openapi-spec' %}
+
+                           {% assign openapi_spec_url = property.url %}
+                           {% assign pathname = openapi_spec_url | replace: raw_url,'' %}
+                           {% assign pathname = pathname | replace: '.json','' %}
+                           {% assign pathname = pathname | replace: '/','.' %}
+
+                           {% assign paths = pathname | split: '.' %}
+                           {% assign root_index = paths[0] %}
+                           {% assign api_index = paths[1] %}
+
+                           {% assign openapi_spec_json = contents[root_index][api_index] %}
+
+                         {% endif %}
+
+                         <tr style="background-color: #FFF;">
+                           <td align="left" style="font-size: 16px; font-weight: bold; padding: 10px;">{{ api.name }} Paths Available</td>
+                           <td align="right" style="padding: 10px;">
+                             {% if openapi_spec_url != null and openapi_spec_url != empty %}
+                               (<a href="{{ openapi_spec_url }}" target="_blank" title="View OpenAPI Spec" style="font-size: 16px; font-weight: normal;">OpenAPI Spec</a>)
+                             {% endif %}
+                           </td>
+                         </tr>
+                         <tr id="methods-for-{{ pathname }}">
+                           <td colspan="2">
+                             <ul>
+
+                               {% for path in openapi_spec_json.paths %}
+
+                                 {% assign path_name = path[0] %}
+                                 {% assign method_json = path[1] %}
+
+                                 {% for method in method_json %}
+
+                                   {% assign tagarray = method[1].tags %}
+                                   {% assign tag = tagarray[0] %}
+                                   {% assign verb = method[0] | upcase %}
+
+                                   {% if verb == 'GET' %}
+                                     {% assign back_color = site.get_color %}
+                                   {% endif %}
+                                   {% if verb == 'POST' %}
+                                     {% assign back_color = site.post_color %}
+                                   {% endif %}
+                                   {% if verb == 'PUT' %}
+                                     {% assign back_color = site.put_color %}
+                                   {% endif %}
+                                   {% if verb == 'DELETE' %}
+                                     {% assign back_color = site.delete_color %}
+                                   {% endif %}
+
+                                   {% assign summary = method[1].summary %}
+                                   {% assign description = method[1].description %}
+
+                                   {% if summary != '' %}
+                                      <li style="font-size: 11px;"><strong>{{ path_name }} -- {{ summary }} </strong> [{{ verb }}] {% if description != '' %} - {{ description }}{% endif %}</li>
+                                   {% endif %}
+
+                                 {% endfor %}
+                               {% endfor %}
+
+                             </ul>
+                           </td>
+                         </tr>
+                       </table>
+
+                       {% endfor %}
+                   {% endfor %}
+
+                 </td>
+               </tr>
+             </table>
+
+        </td>
+      </tr>
+    </table>
+{% endfor %}
+<!--Ending Liquid Listing of _data/api-commons/ folder-->
+
+<p>Liquid makes it easy to work with any JSON or YAML in the _data folder, treating this as a data source. Using Liquid I can do almost anything I can do with PHP, Python, Ruby, Node.js, and other server-side languages--the big difference here, is there is no hosting necessary, it all runs on Github. You don't need database backend, or a server to host website--it is all on Github. If your repo and data is public, it doesn't cost you anything to operate--offloading hosting and bandwidth costs to Github for all your open data, and API projects. This is big deal if you are managing a lot of public data. <a href="https://gist.github.com/kinlane/6a14db7b6994f1c6ba42769abb0fc3b0">You can find a gist of this liquid script here</a>.</p>
+
+<p>Currently, the biggest benefit of have APIs indexed in this way is when it comes to documentation. I can use Liquid to create my own HTML documentation, or I can also put to work other API documentation solutions like <a href="http://swagger.io/swagger-ui/">Swagger UI</a> or <a href="https://github.com/Rebilly/ReDoc">Redoc</a>. Additionally, APIs.json allows you to also include other relevant information like where to sign up for an API key, and the terms of service for using an API. OpenAPISpec describes the APIs, APIs.json defines the supporting operations around those APIs, and provides us with a nice machine-readable index of everything.</p>
+
+<p>Eventually, having our APIs defined in this way helps each index become an engine for every stop along the API and application lifecycle. The APIs.json can act as entry point for integration with any single, or multiple APIs, allowing us to then generate SDKs, testing scripts, monitoring, discovery, and any number of critical needs we have throughout the life cycle of our APIs and applications. This will all take time, but we have to start somewhere.</p>
+
+<!-- Begin Autocomplete -->
+<p><strong>APIs.json Autocomplete</strong></p>
+<p>I want to be able to create autocomplete tooling that is driven from <a href="/apis.json">this projects APIs.json</a>, providing access to the paths, verbs, and tags contained within the APIs.json collection.</p>
+
+<script type="text/jscript">
+
+  var $apiurl = "";
+  var $Pallette = {};
+  var $FullCount = 0;
+  var $pathArray = [];
+  var $verbArray = [];
+  var $tagArray = [];
+
+  function processAPIsJSONAutocomplete($apisjsonURL)
+  {
+
+    $apiHumanURL = "";
+
+    $FullCount = $FullCount + 1;
+
+    var loadItAutoComplete = $.getJSON($apisjsonURL, function(apisJSON) {
+
+      $masterName = apisJSON['name'];
+
+      $masterDesc = apisJSON['description'];
+      $masterLogo = apisJSON['image'];
+      $masterURL = apisJSON['url'];
+
+      $masterTags = apisJSON['tags'];
+      $masterIncludes = apisJSON['include'];
+
+      $.each($masterIncludes, function(masterKey, masterValue) {
+
+        $includeName = masterValue['name'];
+        $includeRootUrl = masterValue['url'];
+
+        $FullCount = $FullCount + 1;
+
+        var loadItAutoComplete2 = $.getJSON($includeRootUrl, function(apisJSON) {
+
+          $singleName = apisJSON['name'];
+
+          //console.log($singleName);
+
+          $singleDesc = apisJSON['description'];
+          $singleLogo = apisJSON['image'];
+          $singleURL = apisJSON['url'];
+
+          $singleTags = apisJSON['tags'];
+          $singleAPIs = apisJSON['apis'];
+
+          $.each($singleAPIs, function(apiKey, apiVal) {
+
+            $apiName = apiVal['name'];
+            $apiDesc = apiVal['description'];
+            $apiLogo = apiVal['image'];
+            $apiHumanURL = apiVal['humanURL'];
+            $apiBaseURL = apiVal['baseURL'];
+
+            $apiProperties = apiVal['properties'];
+
+            $.each($apiProperties, function(propertyKey, propertyValue) {
+
+              $type = propertyValue['type'];
+              $url = propertyValue['url'];
+
+              if($type=='x-openapi-spec')
+              {
+                $FullCount = $FullCount + 1;
+
+                var loadItAutoComplete3 = $.getJSON($url, function($openapispec) {
+
+                  $paths = $openapispec['paths'];
+                  $title = $openapispec['info']['title'];
+
+                  $apiSlug = $title.replace(/ /g,"-");
+                  $apiSlug = $apiSlug.toLowerCase();
+
+                  // show the unique host
+                  $host = $openapispec['host'];
+
+                  $.each($paths, function(pathKey, pathValue) {
+
+                    $path_name = pathKey;
+
+                    $pathexist = 0;
+                    $.each($verbArray, function(key, value) {if(value == $path_name){ $pathexist = 1; }});
+                    if($pathexist==0) {  $pathArray.push($path_name); }
+
+                    $.each(pathValue, function(methodKey, methodValue) {
+
+                      $method = methodKey;
+                      $method = $method.toUpperCase();
+
+                      $methodexist = 0;
+                      $.each($verbArray, function(key, value) { if(value == $method){ $methodexist = 1; }});
+                      if($methodexist==0) { $verbArray.push($method); }
+
+                      $method_summary = methodValue['summary'];
+                      $tags = methodValue['tags'];
+
+                      $.each($tags, function($tagKey, $tagValue) {
+
+                        $tag = $tagValue;
+                        $tag = $tag.trim();
+                        $tagslug = $tag.replace(/ /g,"-");
+                        $tagslug = $tagslug.toLowerCase();
+                        $tag = $tag.charAt(0).toUpperCase() + $tag.slice(1);
+
+                        $tagexists = 0;
+                        $.each($tagArray, function(key, value) { if(value == $tag){ $tagexists = 1; } });
+                        if($tagexists==0) { $tagArray.push($tag);  }
+
+                      });
+                    });
+                  });
+                });
+
+                loadItAutoComplete3.complete(function() {
+
+                  $FullCount = $FullCount - 1;
+                  if($FullCount==0){
+
+                    $pathArray.sort();
+                    $verbArray.sort();
+                    $tagArray.sort();
+
+                    // Load AutoComplete
+                    $(function() {
+                      $( "#paths" ).autocomplete({ source: $pathArray });
+                      $( "#verbs" ).autocomplete({ source: $verbArray });
+                      $( "#tags" ).autocomplete({ source: $tagArray });
+                    });
+                  }
+                });
+              }
+            });
+          });
+        });
+
+        loadItAutoComplete2.complete(function() {
+          $FullCount = $FullCount - 1;
+        });
+      });
+    });
+
+    loadItAutoComplete.complete(function() {
+      $FullCount = $FullCount - 1;
+    });
+
+  }
+$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+processAPIsJSONAutocomplete($apisjsonURL);
+
+</script>
+<div style="padding-left: 25px;">
+<form action="#p" method="get">
+  <p><strong>Path:</strong> <input id="paths" type="text" style="width: 350px; font-size: 14px;" name="Paths" value="" /></p>
+  <p><strong>Verb:</strong> <input id="verbs" type="text" style="width: 50px; font-size: 14px;" name="Verbs" value="" /></p>
+  <p><strong>Tags:</strong> <input id="tags" type="text" style="width: 300px; font-size: 14px;" name="Tag" value="" /></p>
+</form>
+</div>
+<p>This tool allows me to aggregate and provide access to a list of paths available across all the APIs indexed within this collection--something that can be used across the API design process. You can find this tool <a href="https://gist.github.com/kinlane/017b26d03b540c45ffdb89bcca1a569b">as a Github Gist</a>, or available within the Github repository for the project.</p>
+<!-- End Autocomplete -->
+
+<!-- Begin Tag Cloud -->
+<p><strong>APIs.json Tag Cloud</strong></p>
+<p>Using the <a href="/apis.json">APIs.json for this project</a>, I wanted to get a visual summary of what resources are available to me across all the APIs indexed here. Tagging is an important part of defining an API, so I wrote a little tool to aggregate all the tags, across all APIs indexed, and show as a tag cloud visualization.</p>
+
+<script type="text/jscript">
+
+var $apiurl = "";
+var $Pallette = {};
+var $FullCountTagCloud = 0;
+var $tagsforcloud = {};
+$tagsforcloud['tags'] = [];
+
+function processAPIsJSONTagCloud($apisjsonURL)
+{
+
+  $apiHumanURL = "";
+
+  $FullCountTagCloud = $FullCountTagCloud + 1;
+
+  var loadItTagCloud = $.getJSON($apisjsonURL, function(apisJSON) {
+
+    $masterName = apisJSON['name'];
+
+    $masterDesc = apisJSON['description'];
+    $masterLogo = apisJSON['image'];
+    $masterURL = apisJSON['url'];
+
+    $masterTags = apisJSON['tags'];
+    $masterIncludes = apisJSON['include'];
+
+    $.each($masterIncludes, function(masterKey, masterValue) {
+
+      $includeName = masterValue['name'];
+      $includeRootUrl = masterValue['url'];
+
+      $FullCountTagCloud = $FullCountTagCloud + 1;
+
+      var loadItTagCloud2 = $.getJSON($includeRootUrl, function(apisJSON) {
+
+        $singleName = apisJSON['name'];
+
+        console.log($singleName);
+
+        $singleDesc = apisJSON['description'];
+        $singleLogo = apisJSON['image'];
+        $singleURL = apisJSON['url'];
+
+        $singleTags = apisJSON['tags'];
+        $singleAPIs = apisJSON['apis'];
+
+        $.each($singleAPIs, function(apiKey, apiVal) {
+
+          $apiName = apiVal['name'];
+          $apiDesc = apiVal['description'];
+          $apiLogo = apiVal['image'];
+          $apiHumanURL = apiVal['humanURL'];
+          $apiBaseURL = apiVal['baseURL'];
+
+          $apiProperties = apiVal['properties'];
+
+          $.each($apiProperties, function(propertyKey, propertyValue) {
+
+            $type = propertyValue['type'];
+            $url = propertyValue['url'];
+
+            if($type=='x-openapi-spec')
+            {
+              $FullCountTagCloud = $FullCountTagCloud + 1;
+
+              var loadItTagCloud3 = $.getJSON($url, function($openapispec) {
+
+                $paths = $openapispec['paths'];
+                $title = $openapispec['info']['title'];
+
+                $apiSlug = $title.replace(/ /g,"-");
+                $apiSlug = $apiSlug.toLowerCase();
+
+                // show the unique host
+                $host = $openapispec['host'];
+
+                $.each($paths, function(pathKey, pathValue) {
+
+                  $path_name = pathKey;
+
+                  $.each(pathValue, function(methodKey, methodValue) {
+
+                    $method = methodKey;
+
+                    $method_summary = methodValue['summary'];
+                    $tags = methodValue['tags'];
+
+                    $.each($tags, function($tagKey, $tagValue) {
+
+                      $tag = $tagValue;
+                      $tagslug = $tag.replace(/ /g,"-");
+                      $tagslug = $tagslug.toLowerCase();
+                      $tag = $tag.charAt(0).toUpperCase() + $tag.slice(1);
+
+                      if(!Array.isArray($Pallette[$tag]))
+                      {
+                        $Pallette[$tag] = [];
+                      }
+
+                      $T = {};
+                      $T['summary'] = $method_summary;
+                      $T['method'] = $method.toUpperCase();
+                      $T['path'] = $path_name;
+                      $T['url'] = $url;
+                      $T['host'] = $host;
+
+                      $Pallette[$tag].push($T);
+
+                      $M = {};
+                      $M['tag'] = $tag;
+                      $M['name'] = $tag;
+                      $M['slug'] = $tagslug;
+                      $M['count'] = 1;
+                      $M['percentage'] = 0;
+
+                      $TagExist = 0;
+                      $.each($tagsforcloud['tags'], function(key, value) {
+                        if(value['tag'] == $tag)
+                          {
+                          $TagExist = 1;
+                          $verbcount = $tagsforcloud['tags'][key]['count'];
+                          $verbcount = $verbcount + 1;
+                          $tagsforcloud['tags'][key]['count'] = $verbcount ;
+                          }
+                      });
+
+                      // Add It Because It Doesn't Exist
+                      if($TagExist==0)
+                        {
+                        $tagsforcloud['tags'].push($M);
+                        }
+
+                    });
+                  });
+                });
+              });
+
+              loadItTagCloud3.complete(function() {
+
+                $FullCountTagCloud = $FullCountTagCloud - 1;
+                if($FullCountTagCloud==0){
+                  //$viewer = JSON.stringify($Pallette, null, 4);
+                  //document.getElementById("jsonViewerDetails").value = $viewer;
+                  //sortPage();
+
+                  // Let's get max
+                  $Max = 0;
+                  $.each($tagsforcloud['tags'], function(key, val) {
+            				$tagcount = val['count'];
+                    if($tagcount > $Max){ $Max = $tagcount; }
+            			});
+
+                  // Set percentages
+                  $.each($tagsforcloud['tags'], function(key, val) {
+            				$tagcount = val['count'];
+                    //$percentage = (($tagcount - 1) / ($Max - 1));
+                    $percentage = ($tagcount / $Max) * 100;
+                    //$percentage = ($percentage / 10) * 100;
+                    $percentage = Math.round($percentage);
+
+                    $tagsforcloud['tags'][key]['percentage'] = $percentage;
+            			});
+
+                  $.each($tagsforcloud['tags'], function(key, val) {
+
+            				$tag = val['tag'];
+            				$name = val['name'];
+            				$slug = val['slug'];
+            				$tagcount = val['count'];
+                    $tagpercentage = val['percentage'];
+
+                    console.log($name);
+
+            				//html = '<span style="padding: 5px; text-align: center;"><a href="#" title="used ' + $tagcount + ' times">' + $name + '</a> (' + $tagcount + ' times)</span>';
+            				//$('#stack-toc').append(html);
+                    html = '<span data-weight="' + $tagpercentage + '"><a href="#" name="' + $name + '">' + $name + '</a></span>';
+                    $('#stack-cloud').append(html);
+
+            			});
+
+            			$("#stack-cloud").awesomeCloud({
+            				"size" : {
+            					"grid" : 35,
+            					"factor" : 15
+            				},
+            				"options" : {
+            					"color" : "random-dark",
+            					"rotationRatio" : 0
+            				},
+            				"font" : "'Times New Roman', Times, serif",
+            				"shape" : "square"
+            			});
+
+                }
+
+              });
+            }
+          });
+        });
+      });
+
+      loadItTagCloud2.complete(function() {
+
+        $FullCountTagCloud = $FullCountTagCloud - 1;
+
+      });
+
+    });
+
+  });
+
+  loadItTagCloud.complete(function() {
+
+    $FullCountTagCloud = $FullCountTagCloud - 1;
+
+  });
+
+}
+
+$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+//console.log("loading..." + $apisjsonURL);
+processAPIsJSONTagCloud($apisjsonURL);
+
+</script>
+<div id="stack-cloud-wrapper" style="width 75%; border: 0px solid #000; margin-left: 0px; margin-right: 0px;">
+  <div id="stack-toc" style="text-align: center; width=100%; border: 0px solid #000;"></div>
+  <div id="stack-cloud" class="wordcloud" style="height: 400px;"></div>
+</div>
+<p>The more APIs indexed, the more tags that show, and the bigger some tags will get. Showing a quick snapshot of all the resources available, in a single, easy to digest visual. You can <a href="https://gist.github.com/kinlane/c1fdae328e0fd1b317790a297c4af837">find this tool as a Github Gist</a>, or available within the Github repository for the project.</p>
+<!-- End Tag Cloud -->
+
+
+<!-- Begin List by Tag -->
+<p><strong>APIs.json List Paths by Tag</strong></p>
+<p>Next I wanted to think differently about how I list APIs indexed in the <a href="/apis.json">APIs.json for this project</a>. At the beginning of this story I was showing all the available paths grouped by API. I wanted to look at things a little differently and just mix all the available paths together, and group by tag--giving me a much different look at the resources available in this API index.</p>
+<script type="text/jscript">
+
+var $apiurl = "";
+var $Pallette = {};
+var $FullCount = 0;
+
+function processAPIsJSONListByTag($apisjsonURL)
+  {
+
+  $apiHumanURL = "";
+
+  $FullCount = $FullCount + 1;
+
+  var loadItListByTag = $.getJSON($apisjsonURL, function(apisJSON) {
+
+    $masterName = apisJSON['name'];
+
+    $masterDesc = apisJSON['description'];
+    $masterLogo = apisJSON['image'];
+    $masterURL = apisJSON['url'];
+
+    $masterTags = apisJSON['tags'];
+    $masterIncludes = apisJSON['include'];
+
+    $.each($masterIncludes, function(masterKey, masterValue) {
+
+       $includeName = masterValue['name'];
+       $includeRootUrl = masterValue['url'];
+
+       $FullCount = $FullCount + 1;
+
+       var loadItListByTag2 = $.getJSON($includeRootUrl, function(apisJSON) {
+
+        $singleName = apisJSON['name'];
+
+        console.log($singleName);
+
+        $singleDesc = apisJSON['description'];
+        $singleLogo = apisJSON['image'];
+        $singleURL = apisJSON['url'];
+
+        $singleTags = apisJSON['tags'];
+        $singleAPIs = apisJSON['apis'];
+
+        $.each($singleAPIs, function(apiKey, apiVal) {
+
+          $apiName = apiVal['name'];
+          $apiDesc = apiVal['description'];
+          $apiLogo = apiVal['image'];
+          $apiHumanURL = apiVal['humanURL'];
+          $apiBaseURL = apiVal['baseURL'];
+
+          $apiProperties = apiVal['properties'];
+
+          $.each($apiProperties, function(propertyKey, propertyValue) {
+
+            $type = propertyValue['type'];
+            $url = propertyValue['url'];
+
+            if($type=='x-openapi-spec')
+              {
+
+              $FullCount = $FullCount + 1;
+              //console.log("loading 3 " + $type);
+              //console.log("loading 3 " + $url);
+
+              var loadItListByTag3 = $.getJSON($url, function($openapispec) {
+
+                $paths = $openapispec['paths'];
+                $title = $openapispec['info']['title'];
+
+                $apiSlug = $title.replace(/ /g,"-");
+                $apiSlug = $apiSlug.toLowerCase();
+
+                // show the unique host
+                $host = $openapispec['host'];
+
+                    $.each($paths, function(pathKey, pathValue) {
+
+                      $path_name = pathKey;
+
+                      $.each(pathValue, function(methodKey, methodValue) {
+
+                        $method = methodKey;
+
+                        $method_summary = methodValue['summary'];
+                        $tags = methodValue['tags'];
+
+                        $.each($tags, function($tagKey, $tagValue) {
+
+                          $tag = $tagValue;
+                    $tagslug = $tag.replace(/ /g,"-");
+                    $tagslug = $tagslug.toLowerCase();
+
+                          if(!Array.isArray($Pallette[$tag]))
+                            {
+                      $Pallette[$tag] = [];
+                      }
+
+                    $T = {};
+                    $T['summary'] = $method_summary;
+                    $T['method'] = $method.toUpperCase();
+                    $T['path'] = $path_name;
+                    $T['url'] = $url;
+                    $T['host'] = $host;
+
+                    $Pallette[$tag].push($T);
+
+                          });
+                        });
+                      });
+                    });
+
+            loadItListByTag3.complete(function() {
+
+              $FullCount = $FullCount - 1;
+                if($FullCount==0){
+                $viewer = JSON.stringify($Pallette, null, 4);
+                document.getElementById("jsonViewerDetails").value = $viewer;
+                sortPage();
+                  }
+
+                  });
+                  }
+              });
+        });
+      });
+
+    loadItListByTag2.complete(function() {
+
+      $FullCount = $FullCount - 1;
+
+          });
+
+    });
+
+  });
+
+  loadItListByTag.complete(function() {
+
+    $FullCount = $FullCount - 1;
+
+        });
+
+  }
+
+function sortPage()
+{
+$screenJSON = document.getElementById("jsonViewerDetails").value;
+var unordered = JSON.parse($screenJSON);
+const ordered = {};
+Object.keys(unordered).sort().forEach(function(key) {
+  ordered[key] = unordered[key];
+});
+
+$.each(ordered, function(tagKey, tagValue) {
+
+  $thisvalue = tagValue;
+
+  $thisvalue.sort(function(a, b){
+      if(a.summary < b.summary) return -1;
+      if(a.summary > b.summary) return 1;
+      return 0;
+  });
+
+  ordered[tagKey] = $thisvalue;
+
+  });
+
+$.each(ordered, function(tagKey, tagValue) {
+
+  $tag = tagKey;
+  $tagslug = $tag.replace(/ /g,"-");
+  $tagslug = $tagslug.toLowerCase();
+
+  $html = '<p><strong>' + $tag + '</strong></p><ul id="' + $tagslug + '"></ul>';
+  $('#jsonBrowser').append($html);
+
+  $.each(tagValue, function(methodKey, methodValue) {
+
+    $method_summary = methodValue['summary'];
+    $method = methodValue['method'];
+    $path_name = methodValue['path'];
+    $url = methodValue['url'];
+    $host = methodValue['host'];
+
+    $li = '<li>' + $method_summary + ' - (<strong>' + $method + '</strong>) - <a href="#" title=' + $host + '>' + $path_name + '</a></li>';
+    $('#' + $tagslug).append($li);
+
+    });
+  });
+}
+
+$apisjsonURL = "https://raw.githubusercontent.com/gsa-data/index/master/_data/apis.json";
+//console.log("loading..." + $apisjsonURL);
+processAPIsJSONListByTag($apisjsonURL);
+
+</script>
+<div id="jsonBrowser"></div>
+<!-- For Viewing-->
+<textarea rows="10" cols="100" id="jsonViewerDetails" style="display: none;"></textarea>
+<p>This gives me a new way to look at the resources across providers, or different groups. I always find it useful to hide the information about the company, agency, or group behind an API--I find the APIs, their available paths, parameters, and other details to be a more truthful look at what is going on. You can find this tool as a Github Gist, or available within the Github repository for the project.</p>
+<!-- End Tag Cloud -->
+
+<!-- Closing -->
+<p>This is just a sampling of what is possible when API definitions are available. When you have machine-readable OpenAPI Specs available, indexed using APIs.json, a whole new world of tooling and services emerge. This landscape is already picking up momentum with the growith in adoption of OpenAPI Spec, but with each new resulting definition available in the format, and tooling or service provider that emerges, things are picking up speed monthly in 2017.</p>
+
+<p>With the API definitions in this collection you could now generate SDKs using <a href="http://apimatic.io/">APIMATIC</a>, monitor your APIs with <a href="http://apiscience.com/">API Science</a>, and test them using <a href="http://runscope.com/">Runscope</a>. This is just small taste of wat you can do once you have API definitions. Now we just need to keep doing the hard work to make sure our APIs are as defined as they possibly can using <a href="http://openapis.org/">OpenAPI Spec</a>, and indexed individually, and in collections using <a href="http://apisjson.org/">APIs.json</a>.</p>
+
+<p>You are welcome to make any changes to the JSON files for this project, or leave any feedback via <a href="https://github.com/{{ site.github_org }}/{{ site.github_repo }}/issues">the Github issues</a>.</p>

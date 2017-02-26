@@ -1,0 +1,49 @@
+{
+	"name": "GSA Index",
+	"created": "2017-02-10",
+	"modified": "2017-02-10",
+	"url": "http://gsa.index.apievangelist.com/apis.json",
+	"specificationVersion": "0.14",
+	"apis": [],
+	"tags": ["Federal Government, GSA"],
+	"include": [{
+		"name": "Data.Gov",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/datagov/apis.json"
+	},
+	{
+		"name": "eMuseum API docs",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/emuseum-api-docs/apis.json"
+	},
+	{
+		"name": "FedBizOpps (FBOpen)",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/fedbizopps-fbopen/apis.json"
+	},
+	{
+		"name": "Go.USA.Gov",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/gousagov/apis.json"
+	},
+	{
+		"name": "GSA Per Diem API",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/gsa-per-diem-api/apis.json"
+	},
+	{
+		"name": "Sustainable Facilities Tool API",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/sustainable-facilities-tool-api/apis.json"
+	},
+	{
+		"name": "System Award Management",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/system-award-management/apis.json"
+	},
+	{
+		"name": "U.S. Digital Registry",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/us-digital-registry/apis.json"
+	},
+	{
+		"name": "USA.Gov Corporate Consumer Contact Information",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/usagov-corporate-consumer-contact-information/apis.json"
+	},
+	{
+		"name": "USAJobs API",
+		"url": "https://raw.githubusercontent.com/gsa-data/index/master/_data/api-commons/usajobs-api/apis.json"
+	}]
+}
